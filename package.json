@@ -1,0 +1,25 @@
+{
+  "name": "fpsa-cron-activityplan-checher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/federation-purple-study-associations/fpsa-cron-activityplan-checher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/federation-purple-study-associations/fpsa-cron-activityplan-checher/issues"
+  },
+  "homepage": "https://github.com/federation-purple-study-associations/fpsa-cron-activityplan-checher#readme",
+  "dependencies": {
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
