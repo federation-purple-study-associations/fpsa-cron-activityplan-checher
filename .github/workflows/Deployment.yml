@@ -26,7 +26,7 @@ jobs:
       with:
         release: 'fpsa-activity-plan-checker'
         namespace: 'fpsa'
-        chart: 'k8b'
+        chart: 'chart'
         helm: 'helm3'
         timeout: 2m30s
         token: '${{ github.token }}'
