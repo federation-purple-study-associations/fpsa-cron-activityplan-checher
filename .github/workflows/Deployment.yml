@@ -1,0 +1,34 @@
+name: Deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Docker login
+      run: docker login docker.pkg.github.com -u bastiaanv -p ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Docker build
+      run: docker build -t docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:latest -f Dockerfile .;
+    
+    - name: Docker publish
+      run: docker push docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:latest
+
+    # Deploy container
+    - name: Deploy
+      uses: 'deliverybot/helm@master'
+      with:
+        release: 'fpsa-activity-plan-checker'
+        namespace: 'fpsa'
+        chart: 'k8b'
+        helm: 'helm3'
+        timeout: 2m30s
+        token: '${{ github.token }}'
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
