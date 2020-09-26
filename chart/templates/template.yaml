@@ -1,0 +1,32 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: activity-plan-checker-cronjob
+  namespace: fpsa
+spec:
+  schedule: 0 0 * * *
+  successfulJobsHistoryLimit: 0
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+          - name: regcred
+          restartPolicy: Never
+          containers:
+          - image: "docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:latest"
+            name: activity-plan-checker
+            env:
+            - name: API_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: mailing
+                  key: SMTP_USERNAME
+            - name: API_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mailing
+                  key: SMTP_PASSWOD
+            - name: API_URL
+              value: https://api.fpsa.nl/
