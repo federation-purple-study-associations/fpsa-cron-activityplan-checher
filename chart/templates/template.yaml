@@ -27,6 +27,6 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mailing
-                  key: SMTP_PASSWOD
+                  key: SMTP_PASSWORD
             - name: API_URL
               value: https://api.fpsa.nl/
