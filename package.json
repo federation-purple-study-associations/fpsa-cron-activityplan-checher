@@ -17,9 +17,7 @@
   },
   "homepage": "https://github.com/federation-purple-study-associations/fpsa-cron-activityplan-checher#readme",
   "dependencies": {
-    "axios": "^0.20.0"
-  },
-  "devDependencies": {
+    "axios": "^0.20.0",
     "dotenv": "^8.2.0"
-  }
+  },
 }
