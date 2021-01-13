@@ -15,10 +15,10 @@ jobs:
       run: docker login docker.pkg.github.com -u bastiaanv -p ${{ secrets.GITHUB_TOKEN }}
     
     - name: Docker build
-      run: docker build -t docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:latest -f Dockerfile .;
+      run: docker build -t docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:$GITHUB_SHA -f Dockerfile .;
     
     - name: Docker publish
-      run: docker push docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:latest
+      run: docker push docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:$GITHUB_SHA
 
     # Deploy container
     - name: Deploy
@@ -30,5 +30,7 @@ jobs:
         helm: 'helm3'
         timeout: 2m30s
         token: '${{ github.token }}'
+        values: |
+          tag: '${{ github.sha }}'
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

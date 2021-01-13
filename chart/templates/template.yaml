@@ -15,7 +15,7 @@ spec:
           - name: regcred
           restartPolicy: Never
           containers:
-          - image: "docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:latest"
+          - image: "docker.pkg.github.com/federation-purple-study-associations/fpsa-cron-activityplan-checker/checker:{{.Values.tag}}"
             name: activity-plan-checker
             env:
             - name: API_EMAIL
