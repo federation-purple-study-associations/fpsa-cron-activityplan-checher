@@ -22,7 +22,7 @@ jobs:
 
     # Deploy container
     - name: Deploy
-      uses: 'deliverybot/helm@master'
+      uses: elseu/sdu-helm-deploy-action@0.0.5
       with:
         release: 'fpsa-activity-plan-checker'
         namespace: 'fpsa'
